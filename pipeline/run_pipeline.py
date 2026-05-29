@@ -1,4 +1,4 @@
-"""
+﻿"""
 SynthEngine — Main Pipeline Orchestrator
 Runs the complete data production pipeline end-to-end.
 """
@@ -21,6 +21,11 @@ def run():
     seeds_path = os.path.join(BASE_DIR, "config", "seeds_pool.json")
     generate_seeds_pool(seeds_path)
     
+
+    # Phase 1b: Generate trajectories
+    log.info("\n🚗 Phase 1.5/6: Generating trajectories...")
+    from pipeline.generate_trajectories import generate_batch as gen_traj
+    gen_traj(seeds, os.path.join(BASE_DIR, "data", "raw", "trajectories"))
     # Phase 2: Generate CoT data
     log.info("\n🧠 Phase 2/5: Generating CoT data...")
     from pipeline.generate_cot_data import load_seeds, generate_batch
@@ -50,3 +55,4 @@ def run():
 
 if __name__ == "__main__":
     run()
+
