@@ -1,0 +1,10 @@
+.env
+*.log
+__pycache__/
+.cursorrules
+*.pyc
+.venv/
+venv/
+data/compressed/
+*.parquet
+*.tar.gz
